@@ -11,7 +11,9 @@ class Movie extends Model
 
     protected $fillable = [
         'title',
-        'description'
+        'description',
+        'director_id',
+        'genre_id'
     ];
 
     public function director()

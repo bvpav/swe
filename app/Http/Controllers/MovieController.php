@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Movie;
+use App\Models\Director;
+use App\Models\Genre;
 use Illuminate\Http\Request;
 
 class MovieController extends Controller
@@ -20,12 +22,33 @@ class MovieController extends Controller
 
     public function create()
     {
-        return view('movies.create');
+        $directors = Director::all();
+        $genres = Genre::all();
+        return view('movies.create', compact('directors', 'genres'));
     }
 
     public function store(Request $request)
     {
         $movie = Movie::create($request->all());
+        return redirect()->route('movies.index');
+    }
+
+    public function edit(Movie $movie)
+    {
+        $directors = Director::all();
+        $genres = Genre::all();
+        return view('movies.edit', compact('movie', 'directors', 'genres'));
+    }
+
+    public function update(Request $request, Movie $movie)
+    {
+        $movie->update($request->all());
+        return redirect()->route('movies.show', $movie);
+    }
+
+    public function destroy(Movie $movie)
+    {
+        $movie->delete();
         return redirect()->route('movies.index');
     }
 }
