@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DirectorController;
 use App\Http\Controllers\GenreController;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\ProfileController;
@@ -24,5 +25,8 @@ Route::middleware('auth')
 
 Route::middleware('auth')
     ->resource('genres', GenreController::class);
+
+Route::middleware('auth')
+    ->resource('directors', DirectorController::class);
 
 require __DIR__.'/auth.php';

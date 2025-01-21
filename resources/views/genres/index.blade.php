@@ -2,7 +2,9 @@
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
             {{ __('Genres') }}
-            <a href="{{ route('genres.create') }}" class="text-sm text-blue-500 hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-300">Create a Genre</a>
+            <a href="{{ route('genres.create') }}">
+                <x-primary-button>Create a Genre</x-primary-button>
+            </a>
         </h2>
     </x-slot>
 

@@ -12,8 +12,14 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
+                    <x-nav-link :href="route('movies.index')" :active="request()->routeIs('movies.index')">
+                        {{ __('Movies') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('genres.index')" :active="request()->routeIs('genres.index')">
+                        {{ __('Genres') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('directors.index')" :active="request()->routeIs('directors.index')">
+                        {{ __('Directors') }}
                     </x-nav-link>
                 </div>
             </div>
