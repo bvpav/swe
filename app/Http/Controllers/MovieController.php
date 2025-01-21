@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Movie;
 use App\Models\Director;
 use App\Models\Genre;
-use Illuminate\Http\Request;
+use App\Http\Requests\StoreMovieRequest;
+use App\Http\Requests\UpdateMovieRequest;
 
 class MovieController extends Controller
 {
@@ -27,9 +28,9 @@ class MovieController extends Controller
         return view('movies.create', compact('directors', 'genres'));
     }
 
-    public function store(Request $request)
+    public function store(StoreMovieRequest $request)
     {
-        $movie = Movie::create($request->all());
+        $movie = Movie::create($request->validated());
         return redirect()->route('movies.index');
     }
 
@@ -40,9 +41,9 @@ class MovieController extends Controller
         return view('movies.edit', compact('movie', 'directors', 'genres'));
     }
 
-    public function update(Request $request, Movie $movie)
+    public function update(UpdateMovieRequest $request, Movie $movie)
     {
-        $movie->update($request->all());
+        $movie->update($request->validated());
         return redirect()->route('movies.show', $movie);
     }
 

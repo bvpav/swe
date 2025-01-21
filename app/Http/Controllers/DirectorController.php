@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Director;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreDirectorRequest;
+use App\Http\Requests\UpdateDirectorRequest;
 
 class DirectorController extends Controller
 {
@@ -18,9 +20,9 @@ class DirectorController extends Controller
         return view('directors.create');
     }
 
-    public function store(Request $request)
+    public function store(StoreDirectorRequest $request)
     {
-        $director = Director::create($request->all());
+        $director = Director::create($request->validated());
         return redirect()->route('directors.index');
     }
 
@@ -34,9 +36,9 @@ class DirectorController extends Controller
         return view('directors.edit', compact('director'));
     }
 
-    public function update(Request $request, Director $director)
+    public function update(UpdateDirectorRequest $request, Director $director)
     {
-        $director->update($request->all());
+        $director->update($request->validated());
         return redirect()->route('directors.show', $director);
     }
 
