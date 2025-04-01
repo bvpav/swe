@@ -1,0 +1,35 @@
+name: Tests
+description: Run tests for the project
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    name: PHP ${{ matrix.php-version }} on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        php-version: ["8.1", "8.2"]
+        os: [ubuntu-latest, windows-latest]
+      fail-fast: false
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-version }}
+          coverage: none
+          tools: composer:v2
+
+      - name: Install Dependencies
+        run: composer install --prefer-dist --no-progress
+
+      - name: Run Tests
+        run: composer run-script test

@@ -10,6 +10,14 @@
     "laravel/pint": "^1.21",
     "rector/rector": "^2.0"
   },
+  "scripts": {
+    "lint": "pint --test",
+    "test": "pest",
+    "test:watch": "pest --watch",
+    "format": "pint",
+    "rector": "rector --dry-run",
+    "rector:fix": "rector"
+  },
   "autoload": {
     "psr-4": {
       "App\\": "src/"
